@@ -5,7 +5,7 @@ export interface Wedding {
 
   message: {
     intro: string
-    invitaion: string
+    invitation: string
   }
 
   galleryImages: string[]

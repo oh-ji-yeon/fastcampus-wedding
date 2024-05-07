@@ -2,7 +2,7 @@ import classNames from 'classnames/bind'
 import { useState } from 'react'
 import Section from '@shared/Section'
 import styles from './ImageGallery.module.scss'
-import ImageViewer from '@/ImageViewer'
+import ImageViewer from '@/components/ImageViewer'
 
 const cx = classNames.bind(styles)
 
