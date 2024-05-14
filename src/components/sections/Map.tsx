@@ -2,11 +2,11 @@ import classNames from 'classnames/bind'
 import Section from '@shared/Section'
 import styles from './Map.module.scss'
 import React, { useEffect, useRef } from 'react'
-import { Location } from '@/models/wedding'
+import { Location } from '@models/wedding'
 
 declare global {
   interface Window {
-    Kakao: any
+    kakao: any
   }
 }
 
@@ -23,8 +23,8 @@ function Map({ location }: { location: Location }) {
     document.head.appendChild(script)
 
     script.onload = () => {
-      window.Kakao.maps.load(() => {
-        const position = new window.Kakao.maps.LatLng(
+      window.kakao.maps.load(() => {
+        const position = new window.kakao.maps.LatLng(
           location.lat,
           location.lng,
         )
@@ -34,12 +34,11 @@ function Map({ location }: { location: Location }) {
           level: 3,
         }
 
-        const marker = new window.Kakao.maps.Marker({
+        const market = new window.kakao.maps.Marker({
           position,
         })
-
-        const map = new window.Kakao.maps.Map(mapContainer.current, options)
-        marker.setMap(map)
+        const map = new window.kakao.maps.Map(mapContainer.current, options)
+        market.setMap(map)
       })
     }
   }, [location])
@@ -85,8 +84,8 @@ function WayToCome({
     <div className={cx('wrap-waytocome')}>
       <div className={cx('txt-label')}>{label}</div>
       <ul>
-        {list.map((WayToCome) => (
-          <li>{WayToCome}</li>
+        {list.map((waytocome) => (
+          <li>{waytocome}</li>
         ))}
       </ul>
     </div>
