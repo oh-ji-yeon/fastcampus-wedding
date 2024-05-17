@@ -7,6 +7,7 @@ import styles from './Calendar.module.scss'
 import 'react-day-picker/dist/style.css'
 
 import Section from '@shared/Section'
+import { memo } from 'react'
 
 const cx = classNames.bind(styles)
 
@@ -65,4 +66,4 @@ function Calendar({ date }: { date: string }) {
   )
 }
 
-export default Calendar
+export default memo(Calendar)
