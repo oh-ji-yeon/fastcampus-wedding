@@ -1,7 +1,9 @@
 @font-face {
   font-family: 'NanumDarEuiGweDo';
   src:
-    url('../assets/fonts/NanumDarEuiGweDo.woff2') format('woff2'),
-    url('../assets/fonts/NanumDarEuiGweDo.woff') format('woff'),
-    url('../assets/fonts/NanumDarEuiGweDo.ttf') format('turetype');
+    url('../assets/fonts/subset-NanumDarEuiGweDo.woff2') format('woff2'),
+    url('../assets/fonts/subset-NanumDarEuiGweDo.woff') format('woff'),
+    url('../assets/fonts/subset-NanumDarEuiGweDo.ttf') format('turetype');
+
+  font-display: fallback;
 }
