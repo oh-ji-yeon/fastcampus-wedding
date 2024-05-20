@@ -1,5 +1,4 @@
 import classNames from 'classnames/bind'
-import { useEffect, useState } from 'react'
 
 import styles from './App.module.scss'
 
@@ -8,7 +7,6 @@ import FullScreenMessage from '@shared/FullScreenMessage'
 import Heading from './components/sections/Heading'
 import Video from './components/sections/Video'
 
-import { Wedding } from '@models/wedding'
 import ImageGallery from './components/sections/ImageGallery'
 import Intro from './components/sections/Intro'
 import Invitation from './components/sections/Invitation'
@@ -17,42 +15,12 @@ import Map from './components/sections/Map'
 import Contact from './components/sections/Contact'
 import Share from './components/sections/Share'
 import AttendCountModal from './components/AttendCountModal'
+import useWedding from './hooks/useWedding'
 
 const cx = classNames.bind(styles)
 
 function App() {
-  const [wedding, setWedding] = useState<Wedding | null>(null)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(false)
-  const [count, setCount] = useState(0)
-
-  // 1. wedding 데이터 호출
-  useEffect(() => {
-    setLoading(true)
-
-    // 데이터 보장 방법 - callback, promise, async/await
-    fetch('http://localhost:8888/wedding')
-      .then((response) => {
-        if (response.ok === false) {
-          throw new Error('청첩장 정보를 불러오지 못했습니다.')
-        }
-
-        // console.log('response', response)
-        return response.json()
-      })
-      .then((data) => {
-        // console.log('data', data)
-        setWedding(data)
-        setLoading(false)
-      })
-      .catch((e) => {
-        console.log('에러발생', e)
-        setError(true)
-      })
-      .finally(() => {
-        setLoading(false)
-      })
-  }, [])
+  const { wedding, loading, error } = useWedding()
 
   if (loading) {
     return <FullScreenMessage type="loading" />
@@ -77,17 +45,6 @@ function App() {
 
   return (
     <div className={cx('container')}>
-      <button
-        style={{
-          position: 'fixed',
-          top: 0,
-        }}
-        onClick={() => {
-          setCount((prev) => prev + 1)
-        }}
-      >
-        + {count}
-      </button>
       <Heading date={date} />
       <Video />
       <Intro
